@@ -1,0 +1,14 @@
+{
+  "env": {
+    "NEXT_PUBLIC_REST_API_ENDPOINT": "https://epicclick.in/backend",
+    "NEXT_PUBLIC_SHOP_URL": "https://epicclick.in:3003",
+    "NEXT_PUBLIC_GOOGLE_MAP_API_KEY": ""
+  },
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_REST_API_ENDPOINT": "https://epicclick.in/backend",
+      "NEXT_PUBLIC_SHOP_URL": "https://epicclick.in:3003",
+      "NEXT_PUBLIC_GOOGLE_MAP_API_KEY": ""
+    }
+  }
+}
