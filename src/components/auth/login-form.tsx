@@ -94,12 +94,12 @@ const LoginForm = () => {
 					{t("form:button-label-login")}
 				</Button>
 
-				<div className="flex flex-col items-center justify-center relative text-sm text-heading mt-8 sm:mt-11 mb-6 sm:mb-8">
+				{/* <div className="flex flex-col items-center justify-center relative text-sm text-heading mt-8 sm:mt-11 mb-6 sm:mb-8">
 					<hr className="w-full" />
 					<span className="absolute start-2/4 -top-2.5 px-2 -ms-4 bg-light">
 						{t("common:text-or")}
 					</span>
-				</div>
+				</div> */}
 
 				{/* <div className="text-sm sm:text-base text-body text-center">
 					{t("form:text-no-account")}{" "}
