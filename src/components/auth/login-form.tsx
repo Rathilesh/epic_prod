@@ -10,7 +10,7 @@ import { useLoginMutation } from "@data/user/use-login.mutation";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Link from "@components/ui/link";
+// import Link from "@components/ui/link";
 import { allowedRoles, hasAccess, setAuthCredentials } from "@utils/auth-utils";
 
 type FormValues = {
@@ -101,7 +101,7 @@ const LoginForm = () => {
 					</span>
 				</div>
 
-				<div className="text-sm sm:text-base text-body text-center">
+				{/* <div className="text-sm sm:text-base text-body text-center">
 					{t("form:text-no-account")}{" "}
 					<Link
 						href="/register"
@@ -109,7 +109,7 @@ const LoginForm = () => {
 					>
 						{t("form:link-register-shop-owner")}
 					</Link>
-				</div>
+				</div> */}
 
 				{errorMsg ? (
 					<Alert
