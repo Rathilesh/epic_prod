@@ -150,7 +150,7 @@ export default function ProductVariableForm({ shopId, initialValues }: IProps) {
 					{!!cartesianProduct?.length && (
 						<div className="border-t border-dashed border-border-200 pt-5 md:pt-8 mt-5 md:mt-8">
 							<Title className="text-lg uppercase text-center px-5 md:px-8 mb-0">
-								{cartesianProduct?.length} {t("form:total-variation-added")}
+								{cartesianProduct?.length} &&&&& {t("form:total-variation-added")}
 							</Title>
 							{cartesianProduct.map(
 								(fieldAttributeValue: any, index: number) => {
