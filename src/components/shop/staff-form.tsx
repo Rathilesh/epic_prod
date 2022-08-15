@@ -10,11 +10,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useShopQuery } from "@data/shop/use-shop.query";
 import { useAddStaffMutation } from "@data/user/use-add-staff.mutation";
+import Checkbox from "@components/ui/checkbox/checkbox";
 
 type FormValues = {
   name: string;
   email: string;
   password: string;
+  marketing?:boolean;
 };
 const staffFormSchema = yup.object().shape({
   name: yup.string().required("form:error-name-required"),
@@ -23,6 +25,7 @@ const staffFormSchema = yup.object().shape({
     .email("form:error-email-format")
     .required("form:error-email-required"),
   password: yup.string().required("form:error-password-required"),
+  maketing: yup.boolean(),
 });
 const AddStaffForm = () => {
   const router = useRouter();
@@ -43,7 +46,10 @@ const AddStaffForm = () => {
   const { mutate: addStaff, isLoading: loading } = useAddStaffMutation();
   const { t } = useTranslation();
 
-  function onSubmit({ name, email, password }: FormValues) {
+  function onSubmit({ name, email, password,marketing }: FormValues) {
+  //  console.log(name); 
+  //  console.log(marketing); 
+  //  return false
     addStaff(
       {
         variables: {
@@ -51,6 +57,7 @@ const AddStaffForm = () => {
           email,
           password,
           shop_id: Number(shopId),
+          marketing:marketing,
         },
       },
       {
@@ -98,6 +105,7 @@ const AddStaffForm = () => {
             variant="outline"
             className="mb-4"
           />
+          <Checkbox label={"Marketing Staff ? "} {...register("marketing")} name={"marketing"} /> 
         </Card>
       </div>
 
