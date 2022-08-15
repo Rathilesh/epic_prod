@@ -933,6 +933,7 @@ export declare type AddStaffInput = {
   password: Scalars["String"];
   name: Scalars["String"];
   shop_id: Scalars["Int"];
+  marketing?: Scalars["Boolean"];
 };
 
 export declare type ShopSettings = {
