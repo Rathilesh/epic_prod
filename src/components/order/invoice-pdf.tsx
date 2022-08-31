@@ -53,9 +53,9 @@ export default function InvoicePdf({ order }: { order: Order }) {
               <Text style={styles.addressText}>
                 {formatAddress(order?.shipping_address as UserAddress)}
               </Text>
-            </View>
+            </View> 
             
-            <View style={[styles.section]}>
+            {/* <View style={[styles.section]}>
               <Text style={[styles.addressTextRight, { marginBottom: 20 }]}>
                 Date: {dayjs().format("D MMMM, YYYY")}
               </Text>
@@ -72,7 +72,7 @@ export default function InvoicePdf({ order }: { order: Order }) {
               <Text style={styles.addressTextRight}>
                 21 Jump Street, CA, California
               </Text>
-            </View>
+            </View> */}
             
             
           </View>
