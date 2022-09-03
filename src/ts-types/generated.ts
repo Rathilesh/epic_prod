@@ -46,6 +46,7 @@ export declare type User = {
   updated_at: Scalars["DateTime"];
   profile?: Maybe<Profile>;
   address: Array<Address>;
+  firstInvoiceID: Scalars["Int"];
   orders?: Maybe<OrderPaginator>;
 };
 
@@ -95,6 +96,7 @@ export declare type Order = {
   total: Scalars["Float"];
   paid_total: Scalars["Float"];
   payment_id?: Maybe<Scalars["String"]>;
+  parent_id?: Maybe<Scalars["Int"]>;
   payment_gateway?: Maybe<Scalars["String"]>;
   coupon?: Maybe<Coupon>;
   discount?: Maybe<Scalars["Float"]>;
@@ -105,6 +107,7 @@ export declare type Order = {
   updated_at: Scalars["DateTime"];
   billing_address?: Maybe<UserAddress>;
   shipping_address?: Maybe<UserAddress>;
+  delivery_notes?: Scalars["String"];
 };
 export declare type OrderStatus = {
   id: Scalars["ID"];
@@ -127,6 +130,19 @@ export declare type Coupon = {
   created_at: Scalars["DateTime"];
   updated_at: Scalars["DateTime"];
 };
+export declare type Marketing = {
+
+  id: Scalars["ID"];
+  user_id: Scalars["ID"];
+  date: Scalars["DateTime"];
+  appinstall: Scalars["Int"];
+  notes: Scalars["String"],
+  created_at: Scalars["DateTime"];
+  updated_at: Scalars["DateTime"];
+  deleted_at: Scalars["DateTime"];
+  user:Maybe<User>
+
+}
 export declare type Product = {
   id: Scalars["ID"];
   shop_id: Scalars["ID"];
@@ -259,6 +275,13 @@ export declare type ProductPaginator = {
   paginatorInfo: PaginatorInfo;
   /** A list of Product items. */
   data: Array<Product>;
+};
+
+export declare type MarketingPaginator = {
+  /** Pagination information about the list of items. */
+  paginatorInfo: PaginatorInfo;
+  /** A list of Product items. */
+  data: Array<Marketing>;
 };
 export declare type Category = {
   id: Scalars["ID"];

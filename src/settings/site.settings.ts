@@ -2,19 +2,19 @@ import { adminAndOwnerOnly, adminOwnerAndStaffOnly } from "@utils/auth-utils";
 import { ROUTES } from "@utils/routes";
 
 export const siteSettings = {
-  name: "ChawkBazar",
+  name: "Epic",
   description: "",
   logo: {
     url: "/logo.svg",
-    alt: "ChawkBazar",
+    alt: "Epic",
     href: "/",
     width: 128,
     height: 40,
   },
   defaultLanguage: "en",
   author: {
-    name: "RedQ, Inc.",
-    websiteUrl: "https://redq.io",
+    name: "Epic, Inc.",
+    websiteUrl: "https://epic.in",
     address: "",
   },
   headerLinks: [],
@@ -28,7 +28,7 @@ export const siteSettings = {
       labelTransKey: "authorized-nav-item-logout",
     },
   ],
-  currencyCode: "USD",
+  currencyCode: "INR",
   sidebarLinks: {
     admin: [
       {
@@ -71,11 +71,11 @@ export const siteSettings = {
         label: "sidebar-nav-item-tags",
         icon: "TagIcon",
       },
-      {
-        href: ROUTES.ORDERS,
-        label: "sidebar-nav-item-orders",
-        icon: "OrdersIcon",
-      },
+      // {
+      //   href: ROUTES.ORDERS,
+      //   label: "sidebar-nav-item-orders",
+      //   icon: "OrdersIcon",
+      // },
       {
         href: ROUTES.ORDER_STATUS,
         label: "sidebar-nav-item-order-status",
@@ -87,10 +87,15 @@ export const siteSettings = {
         icon: "UsersIcon",
       },
       {
-        href: ROUTES.COUPONS,
-        label: "sidebar-nav-item-coupons",
-        icon: "CouponsIcon",
+        href: ROUTES.MARKETING,
+        label: "Marketing",
+        icon: "UsersIcon",
       },
+      // {
+      //   href: ROUTES.COUPONS,
+      //   label: "sidebar-nav-item-coupons",
+      //   icon: "CouponsIcon",
+      // },
       {
         href: ROUTES.TAXES,
         label: "sidebar-nav-item-taxes",
@@ -101,11 +106,11 @@ export const siteSettings = {
         label: "sidebar-nav-item-shippings",
         icon: "ShippingsIcon",
       },
-      {
-        href: ROUTES.WITHDRAWS,
-        label: "sidebar-nav-item-withdraws",
-        icon: "WithdrawIcon",
-      },
+      // {
+      //   href: ROUTES.WITHDRAWS,
+      //   label: "sidebar-nav-item-withdraws",
+      //   icon: "WithdrawIcon",
+      // },
       {
         href: ROUTES.SETTINGS,
         label: "sidebar-nav-item-settings",

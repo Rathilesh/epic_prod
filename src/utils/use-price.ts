@@ -10,9 +10,9 @@ export function formatPrice({
   currencyCode: string;
   locale: string;
 }) {
-  const formatCurrency = new Intl.NumberFormat(locale, {
+  const formatCurrency = new Intl.NumberFormat("en-IN", {
     style: "currency",
-    currency: currencyCode,
+    currency: 'INR',
   });
 
   return formatCurrency.format(amount);

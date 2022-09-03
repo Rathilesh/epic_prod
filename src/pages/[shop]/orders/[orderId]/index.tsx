@@ -40,6 +40,8 @@ export default function OrderDetailsPage() {
 		error,
 	} = useOrderQuery(query.orderId as string);
 
+	//console.log(data);
+
 	const {
 		handleSubmit,
 		control,
@@ -195,21 +197,30 @@ export default function OrderDetailsPage() {
 						<span>{t("common:order-sub-total")}</span>
 						<span>{subtotal}</span>
 					</div>
-					<div className="flex items-center justify-between text-sm text-body">
-						<span>{t("common:order-tax")}</span>
-						<span>{sales_tax}</span>
+					{
+						(data?.order?.customer?.firstInvoiceID == data?.order?.parent_id && ((data?.order?.paid_total ?? 0) > 1000) ) ?
+						(
+							<div className="flex items-center justify-between text-sm text-body">
+						<span>Redeem Amount</span>
+						<span>₹199.00</span>
 					</div>
-					<div className="flex items-center justify-between text-sm text-body">
+
+						):<span></span>
+					}
+					 
+
+					
+					{/*<div className="flex items-center justify-between text-sm text-body">
 						<span>{t("common:order-delivery-fee")}</span>
 						<span>{delivery_fee}</span>
 					</div>
 					<div className="flex items-center justify-between text-sm text-body">
 						<span>{t("common:order-discount")}</span>
 						<span>{discount}</span>
-					</div>
+					</div> */}
 					<div className="flex items-center justify-between text-body font-semibold">
 						<span>{t("common:order-total")}</span>
-						<span>{total}</span>
+						<span>{ (data?.order?.customer?.firstInvoiceID == data?.order?.parent_id && ((data?.order?.paid_total ?? 0) > 1000))? '₹' + data?.order?.paid_total:total}</span>
 					</div>
 				</div>
 			</div>

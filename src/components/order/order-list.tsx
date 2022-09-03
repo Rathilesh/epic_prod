@@ -163,6 +163,16 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 				<div>{formatAddress(shipping_address)}</div>
 			),
 		},
+
+		{
+			title: "Delivery Notes",
+			dataIndex: "delivery_notes",
+			key: "delivery_notes",
+			align: alignLeft,
+			render: (delivery_notes: String) => (
+				<div>{delivery_notes}</div>
+			),
+		},
 		{
 			// title: "Download",
 			title: t("common:text-invoice"),

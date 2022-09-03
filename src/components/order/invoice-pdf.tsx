@@ -31,8 +31,8 @@ export default function InvoicePdf({ order }: { order: Order }) {
     }
   );
   return (
-    <Document>
-      <Page size="A4">
+    <Document >
+      <Page size="Legal"  >
         <View style={styles.container}>
           {/* Address */}
           <View style={styles.addressWrapper}>
@@ -111,9 +111,9 @@ export default function InvoicePdf({ order }: { order: Order }) {
           <View style={styles.totalCountWrapper}>
             <View style={styles.totalCountRow}>
               <Text style={styles.totalCountCell}>Sub Total</Text>
-              <Text style={styles.totalCountCell}>{subtotal}</Text>
-            </View>
-            <View style={styles.totalCountRow}>
+              <Text style={styles.totalCountCell}>Rs {subtotal}</Text>
+            </View> 
+            {/* <View style={styles.totalCountRow}>
               <Text style={styles.totalCountCell}>Discount</Text>
               <Text style={styles.totalCountCell}>{discount}</Text>
             </View>
@@ -124,13 +124,13 @@ export default function InvoicePdf({ order }: { order: Order }) {
             <View style={styles.totalCountRow}>
               <Text style={styles.totalCountCell}>Delivery Fee</Text>
               <Text style={styles.totalCountCell}>{delivery_fee}</Text>
-            </View>
+            </View> */}
             <View style={styles.totalCountRow}>
               <Text style={[styles.totalCountCell, { fontSize: 12 }]}>
                 Total
               </Text>
               <Text style={[styles.totalCountCell, { fontSize: 12 }]}>
-                {total}
+              Rs {total}
               </Text>
             </View>
           </View>

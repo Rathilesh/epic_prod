@@ -1,8 +1,8 @@
 export const CURRENCY = [
   {
-    symbol: "$",
+    symbol: "₹",
     name: "US Dollar",
-    symbol_native: "$",
+    symbol_native: "₹",
     decimal_digits: 2,
     rounding: 0,
     code: "USD",

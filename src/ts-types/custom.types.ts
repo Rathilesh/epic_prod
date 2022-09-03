@@ -47,6 +47,15 @@ export type ProductsQueryOptionsType = {
   orderBy?: string;
   sortedBy?: SortOrder;
 };
+
+export type MarketingQueryOptionsType = {
+  page?: number;
+  text?: string;
+  limit?: number;
+  orderBy?: string;
+  sortedBy?: SortOrder;
+};
+
 export type TypesQueryOptionsType = {
   page?: number;
   text?: string;

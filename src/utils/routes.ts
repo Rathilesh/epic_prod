@@ -8,6 +8,7 @@ export const ROUTES = {
   ORDERS: "/orders",
   PRODUCTS: "/products",
   COUPONS: "/coupons",
+  MARKETING: "/marketing",
   USERS: "/users",
   TAXES: "/taxes",
   SHIPPINGS: "/shippings",
