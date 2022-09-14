@@ -91,6 +91,7 @@ export declare type Order = {
   customer_id: Scalars["Int"];
   customer?: Maybe<User>;
   status: OrderStatus;
+  delivery: User;
   amount: Scalars["Float"];
   sales_tax: Scalars["Float"];
   total: Scalars["Float"];
@@ -108,6 +109,7 @@ export declare type Order = {
   billing_address?: Maybe<UserAddress>;
   shipping_address?: Maybe<UserAddress>;
   delivery_notes?: Scalars["String"];
+  delivery_id?: Scalars["ID"];
 };
 export declare type OrderStatus = {
   id: Scalars["ID"];
@@ -117,6 +119,7 @@ export declare type OrderStatus = {
   created_at: Scalars["DateTime"];
   updated_at: Scalars["DateTime"];
 };
+
 export declare type Coupon = {
   id: Scalars["ID"];
   code: Scalars["String"];
@@ -508,6 +511,7 @@ export declare type CouponUpdateInput = {
 export declare type UpdateOrder = {
   tracking_number?: Maybe<Scalars["String"]>;
   customer_id?: Maybe<Scalars["ID"]>;
+  delivery_id?: Maybe<Scalars["ID"]>;
   status?: Maybe<Scalars["ID"]>;
   products?: Array<ConnectProductOrderPivot>;
   amount?: Maybe<Scalars["Float"]>;

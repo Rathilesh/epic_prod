@@ -21,16 +21,28 @@ import { useUpdateOrderMutation } from "@data/order/use-order-update.mutation";
 import { useOrderStatusesQuery } from "@data/order-status/use-order-statuses.query";
 import { useOrderQuery } from "@data/order/use-order.query";
 import { Attachment } from "@ts-types/generated";
+import { useUsersQuery } from "@data/user/use-users.query";
 
 type FormValues = {
 	order_status: any;
+};
+type FormValuesDelivery = {
+delivery_id: any;
+order_status?: any;
 };
 export default function OrderDetailsPage() {
 	const { t } = useTranslation();
 	const { query } = useRouter();
 	const { alignLeft, alignRight } = useIsRTL();
+
 	const { mutate: updateOrder, isLoading: updating } = useUpdateOrderMutation();
+	
 	const { data: orderStatusData } = useOrderStatusesQuery({
+		limit: 100,
+	});
+
+	const { data: usersData } = useUsersQuery({
+		text:'',
 		limit: 100,
 	});
 
@@ -51,6 +63,15 @@ export default function OrderDetailsPage() {
 		defaultValues: { order_status: data?.order?.status ?? "" },
 	});
 
+	const {
+		handleSubmit:handleSubmitDelivery,
+		control:controlDelivery,
+
+		formState: { errors:errorsDelivery },
+	} = useForm<FormValuesDelivery>({
+		defaultValues: { delivery_id: data?.order?.delivery_id ?? "" },
+	});
+
 	const ChangeStatus = ({ order_status }: FormValues) => {
 		updateOrder({
 			variables: {
@@ -60,6 +81,19 @@ export default function OrderDetailsPage() {
 				},
 			},
 		});
+	};
+	const ChangeDelivery = ({ delivery_id,order_status }: FormValuesDelivery) => {
+		updateOrder(
+			{
+			variables: {
+				id: data?.order?.id as string,
+				input: {
+					delivery_id: delivery_id.id as string,
+					status: order_status?.id as string,
+				},
+			},
+		}
+		);
 	};
 	const { price: subtotal } = usePrice(
 		data && {
@@ -135,10 +169,11 @@ export default function OrderDetailsPage() {
 
 	return (
 		<Card>
-			<div className="flex flex-col lg:flex-row items-center">
-				<h3 className="text-2xl font-semibold text-heading text-center lg:text-start w-full lg:w-1/3 mb-8 lg:mb-0 whitespace-nowrap">
+			<h3 className="text-2xl font-semibold text-heading text-center lg:text-start w-full lg:w-1/3 mb-8 lg:mb-0 whitespace-nowrap">
 					{t("form:input-label-order-id")} - {data?.order?.tracking_number}
 				</h3>
+			<div className="flex flex-row items-center gap-2">
+				
 
 				<form
 					onSubmit={handleSubmit(ChangeStatus)}
@@ -168,7 +203,40 @@ export default function OrderDetailsPage() {
 						</span>
 					</Button>
 				</form>
+
+{/* assign order to a delivery staff */}
+				<form
+					onSubmit={handleSubmitDelivery(ChangeDelivery)}
+					className="flex items-start ms-auto w-full lg:w-2/4"
+				>
+					<div className="w-full me-5 z-20">
+						<SelectInput
+							name="delivery_id"
+							control={controlDelivery}
+							getOptionLabel={(option: any) => option.name}
+							getOptionValue={(option: any) => option.id}
+							options={usersData?.users?.data!}
+							placeholder="select a user"
+							rules={{
+								required: "This is required",
+							}}
+						/>
+
+						<ValidationError message={t(errorsDelivery?.delivery_id?.message)} />
+					</div>
+					<Button loading={updating}>
+						<span className="hidden sm:block">
+						Assign to User
+						</span>
+						<span className="block sm:hidden">
+							Assign to User
+						</span>
+					</Button>
+				</form>
+				{/* assign order to a delivery staff */}
 			</div>
+
+			<span>This order is assigned to - {data?.order?.delivery?.name ?? 'no one'}</span>
 
 			<div className="my-5 lg:my-10 flex justify-center items-center">
 				<ProgressBox
