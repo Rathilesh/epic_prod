@@ -9,7 +9,7 @@ const InvoicePage = () => {
   if (loading) return <Loader showText={false} />;
   if (error) return <ErrorMessage message={error.message} />;
   return (
-    <PDFViewer style={{ width: "100vw", height: "100vh" }}>
+    <PDFViewer style={{ width: "40vw", height: "40vh" }}>
       <InvoicePdf order={data?.order!} />
     </PDFViewer>
   );

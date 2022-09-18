@@ -213,7 +213,7 @@ const MarketingList = ({ marketing, onPagination, onSort, onOrder }: IProps) => 
 			align: "center",
 			width: 100,
 			render: (notes: string) => (
-				<span className="whitespace-nowrap truncate">{notes}</span>				
+				<span>{notes}</span>				
 			),
 		},
 		// {

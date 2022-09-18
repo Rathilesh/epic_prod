@@ -19,6 +19,8 @@ module.exports = {
     extend: {
       screens: {
         "3xl": "1900px",
+        print: {raw: 'print'},
+        screen: {raw: 'screen'},
       },
       fontFamily: {
         body: ["Open Sans", "system-ui", "sans-serif"],
@@ -94,6 +96,7 @@ module.exports = {
       gridTemplateColumns: {
         fit: "repeat(auto-fit, minmax(0, 1fr))",
       },
+      
     },
   },
   variants: {

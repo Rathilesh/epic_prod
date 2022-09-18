@@ -7,6 +7,7 @@ import { formatAddress } from "@utils/format-address";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import printThermal from "./printThermal";
 import {
 	Order,
 	OrderPaginator,
@@ -19,8 +20,10 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useIsRTL } from "@utils/locals";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import TitleWithSort from "@components/ui/title-with-sort";
+import ReactToPrint from "react-to-print";
+import OwnerLayout from "@components/layouts/owner";
 
 type IProps = {
 	orders: OrderPaginator | null | undefined;
@@ -43,6 +46,7 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 		sort: SortOrder.Desc,
 		column: null,
 	});
+	const componentRef = useRef([]);
 
 	const onHeaderClick = (column: string | null) => ({
 		onClick: () => {
@@ -180,8 +184,8 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 			key: "download",
 			align: "center",
 			render: (_id: string, order: Order) => (
-				<div className="block">
-					<PDFDownloadLink
+				<div >
+					{/* <PDFDownloadLink
 						document={<InvoicePdf order={order} />}
 						fileName="invoice.pdf"
 						className="break-normal"
@@ -189,7 +193,77 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 						{({ loading }: any) =>
 							loading ? t("common:text-loading") : t("common:text-download")
 						}
-					</PDFDownloadLink>
+					</PDFDownloadLink> */}
+					
+					<ReactToPrint
+						trigger={() => <button>Print!</button>}
+						content={() => componentRef.current[_id as any]}						
+					/>
+					
+					<div className="screen:hidden p-2" ref={ref=> {
+            componentRef.current[_id as any] = ref as never // took this from your guide's example.
+          }} > 
+						{/* <InvoicePdf order={order} /> */}
+						<table width={'100%'} className="p-2">
+							<tr>
+							<td colSpan={4} className="text-center">
+								<span className="font-bold">{order?.customer?.name}</span>
+								<h6>{order?.customer?.email}</h6>
+								<h6>{order?.customer_contact}</h6>
+								<h6 > {formatAddress(order?.shipping_address as UserAddress)}</h6>
+							</td>
+							</tr>
+							<tr>
+								<td className="text-left p-4" colSpan={2} width={'50%'}>Bill NO :  {order.tracking_number}</td>
+								<td className="text-right  p-4" colSpan={2} width={'50%'}>Date: {dayjs().format("D MMMM, YYYY")}</td>
+							</tr>
+							<tr className=" text-center border-t border-b border-dashed border-black">
+								<td>Item</td>
+								<td>Qty</td>
+								<td>Price</td>
+								<td>Amt</td>
+							</tr>
+							{order.products.map((pdt, index) => {
+								const { price } = usePrice({
+									// @ts-ignore
+									amount: parseFloat(pdt.pivot.subtotal),
+								  });
+
+								  
+							 return (
+							 <tr className="">
+								<td>{index + 1} {pdt.name}</td>
+								<td className="text-center p-4">{pdt?.pivot?.order_quantity}</td>
+								<td className="text-center p-4">{price}</td> 
+								<td className="text-center p-4">₹{(pdt?.pivot?.subtotal ?? 0) * (pdt?.pivot?.order_quantity ?? 0)}</td>
+							</tr>
+							);
+							})}
+							{/* <tr className=" text-center border-t border-b border-dashed border-black">
+								<td>SubTotal</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>Amt</td>
+							</tr> */}
+							<tr className=" text-center border-t border-b border-dashed border-black">
+								<td className="text-left">TOTAL</td>
+								<td colSpan={2}></td>								
+								<td className="text-center">₹{ (order?.customer?.firstInvoiceID == order?.parent_id && ((order?.paid_total ?? 0) > 1000))? '₹' + order?.paid_total:order?.total}</td>
+							</tr>
+							
+
+						</table>
+					</div>
+					
+					{/* <PDFDownloadLink ref={componentRef} 
+						document={<InvoicePdf order={order} />}
+						fileName="invoice.pdf"
+						className="break-normal"
+					>
+						{({ loading }: any) =>
+							loading ? t("common:text-loading") : t("common:text-download")
+						}
+					</PDFDownloadLink> */}
 				</div>
 			),
 		},
