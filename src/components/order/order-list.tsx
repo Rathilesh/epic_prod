@@ -207,15 +207,33 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 						<table width={'100%'} className="p-2">
 							<tr>
 							<td colSpan={4} className="text-center">
-								<span className="font-bold">{order?.customer?.name}</span>
+								<div className="flex justify-center align-middle items-center">
+								<img className="" src="/epic-black.png" width={130}/>
+								</div>
+								<h5>ALENTADOR CUSTOMER DIENSTE PVT LTD</h5>
+								<h6>Contact Number : +91 9793909696</h6>
+								<h6>Email:info@alentador.in</h6>
+								<h6>GSTIN:32AAXCA4138M1Z8</h6>
+								{/* <span className="font-bold">{order?.customer?.name}</span>
 								<h6>{order?.customer?.email}</h6>
 								<h6>{order?.customer_contact}</h6>
-								<h6 > {formatAddress(order?.shipping_address as UserAddress)}</h6>
+								<h6 > {formatAddress(order?.shipping_address as UserAddress)}</h6> */}
 							</td>
 							</tr>
 							<tr>
 								<td className="text-left p-4" colSpan={2} width={'50%'}>Bill NO :  {order.tracking_number}</td>
 								<td className="text-right  p-4" colSpan={2} width={'50%'}>Date: {dayjs().format("D MMMM, YYYY")}</td>
+							</tr>
+							<tr>
+								<td className="text-left p-4" colSpan={2} width={'50%'}>
+								<h6>Payment Mode:online/COD</h6>
+								<h6>Billing Address</h6>
+								<h6>{order?.customer?.name}</h6>
+								<h6>{order?.customer?.email}</h6>								
+								<h6 > {formatAddress(order?.shipping_address as UserAddress)}</h6>
+								<h6>{order?.customer_contact}</h6>
+								</td>
+								<td className="text-right  p-4" colSpan={2} width={'50%'}> </td>
 							</tr>
 							<tr className=" text-center border-t border-b border-dashed border-black">
 								<td>Item</td>
@@ -250,6 +268,10 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 								<td colSpan={2}></td>								
 								<td className="text-center">₹{ (order?.customer?.firstInvoiceID == order?.parent_id && ((order?.paid_total ?? 0) > 1000))? '₹' + order?.paid_total:order?.total}</td>
 							</tr>
+							<tr>
+								<td colSpan={4} className="text-center mt-28 p-6"> Thank You</td>
+							</tr>
+
 							
 
 						</table>
