@@ -18,6 +18,7 @@ export const API_ENDPOINTS = {
   CATEGORIES: "categories",
   TAGS: "tags",
   TYPES: "types",
+  SLIDERS: "sliders",
   PROFILE_UPDATE: "profile-update",
   LOGOUT: "logout",
   ME: "me",

@@ -1,3 +1,4 @@
+import SliderDeleteView from "@components/slider/slider-delete-view";
 import Modal from "@components/ui/modal/modal";
 import dynamic from "next/dynamic";
 import { useModalAction, useModalState } from "./modal.context";
@@ -52,6 +53,7 @@ const ManagedModal = () => {
     <Modal open={isOpen} onClose={closeModal}>
       {view === "DELETE_PRODUCT" && <ProductDeleteView />}
       {view === "DELETE_TYPE" && <TypeDeleteView />}
+      {view === "DELETE_SLIDER" && <SliderDeleteView />}
       {view === "DELETE_ATTRIBUTE" && <AttributeDeleteView />}
       {view === "DELETE_CATEGORY" && <CategoryDeleteView />}
       {view === "DELETE_COUPON" && <CouponDeleteView />}

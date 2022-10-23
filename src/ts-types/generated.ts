@@ -258,6 +258,15 @@ export declare type Type = {
   updated_at: Scalars["DateTime"];
 };
 
+export declare type Slider = {
+  id: Scalars["ID"];
+  name: Scalars["String"];
+  slug: Scalars["String"];
+  images?: Maybe<any>;
+  created_at: Scalars["DateTime"];
+  updated_at: Scalars["DateTime"];
+};
+
 export declare type TypeSettings = {
   isHome?: Maybe<Scalars["Boolean"]>;
   layoutType?: Maybe<Scalars["String"]>;
@@ -778,6 +787,12 @@ export type CreateTypeInput = {
   name: Scalars["String"];
   gallery?: Maybe<Array<AttachmentInput>>;
   icon?: Maybe<Scalars["String"]>;
+  banner_text?: Maybe<Scalars["String"]>;
+};
+
+export type CreateSliderInput = {
+  name: Scalars["String"];
+  gallery?: Maybe<Array<AttachmentInput>>;
   banner_text?: Maybe<Scalars["String"]>;
 };
 

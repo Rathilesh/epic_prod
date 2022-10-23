@@ -19,6 +19,7 @@ export const ROUTES = {
   ATTRIBUTES: "/attributes",
   ATTRIBUTE_VALUES: "/attribute-values",
   BRANDS: "/brands",
+  SLIDERS: "/sliders",
   TAGS: "/tags",
   WITHDRAWS: "/withdraws",
   PROFILE_UPDATE: "/profile-update",

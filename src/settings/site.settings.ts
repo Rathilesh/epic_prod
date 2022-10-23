@@ -62,6 +62,11 @@ export const siteSettings = {
         icon: "TypesIcon",
       },
       {
+        href: ROUTES.SLIDERS,
+        label: "Sliders",
+        icon: "AttributeIcon",
+      },
+      {
         href: ROUTES.CATEGORIES,
         label: "sidebar-nav-item-categories",
         icon: "CategoriesIcon",
