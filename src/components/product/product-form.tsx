@@ -413,7 +413,7 @@ export default function CreateOrUpdateProductForm({ initialValues }: IProps) {
                 className="mb-5"
               />
 
-              <div>
+              <div className="invisible">
                 <Label>{t("form:input-label-status")}</Label>
                 <Radio
                   {...register("status")}

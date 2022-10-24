@@ -211,7 +211,7 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 								<img className="" src="/epic-black.png" width={130}/>
 								</div>
 								<h5>ALENTADOR CUSTOMER DIENSTE PVT LTD</h5>
-								<h6>Contact Number : +91 9793909696</h6>
+								<h6>Contact Number : 18008899731</h6>
 								<h6>Email:info@alentador.in</h6>
 								<h6>GSTIN:32AAXCA4138M1Z8</h6>
 								{/* <span className="font-bold">{order?.customer?.name}</span>
@@ -221,7 +221,7 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 							</td>
 							</tr>
 							<tr>
-								<td className="text-left p-4" colSpan={2} width={'50%'}>Bill NO :  {order.tracking_number}</td>
+								<td className="text-left p-4" colSpan={2} width={'50%'}>Bill NO :  <span className="font-bold">{order.tracking_number}</span></td>
 								<td className="text-right  p-4" colSpan={2} width={'50%'}>Date: {dayjs().format("D MMMM, YYYY")}</td>
 							</tr>
 							<tr>
