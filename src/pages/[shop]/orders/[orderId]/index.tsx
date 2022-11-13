@@ -194,7 +194,7 @@ export default function OrderDetailsPage() {
 
 						<ValidationError message={t(errors?.order_status?.message)} />
 					</div>
-					<Button loading={updating}>
+					<Button loading={updating} disabled={data?.order?.status?.id == '4' }>
 						<span className="hidden sm:block">
 							{t("form:button-label-change-status")}
 						</span>
@@ -224,7 +224,7 @@ export default function OrderDetailsPage() {
 
 						<ValidationError message={t(errorsDelivery?.delivery_id?.message)} />
 					</div>
-					<Button loading={updating}>
+					<Button loading={updating}  disabled={data?.order?.status?.id == '4'}>
 						<span className="hidden sm:block">
 						Assign to User
 						</span>
@@ -239,6 +239,9 @@ export default function OrderDetailsPage() {
 			<span>This order is assigned to - {data?.order?.delivery?.name ?? 'no one'}</span>
 
 			<div className="my-5 lg:my-10 flex justify-center items-center">
+
+			{/* <h1>HERE {`here update ${JSON.stringify(data?.order?.status?.id)}`}</h1> */}
+
 				<ProgressBox
 					data={orderStatusData?.order_statuses?.data}
 					status={data?.order?.status?.serial!}

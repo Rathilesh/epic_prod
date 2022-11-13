@@ -154,6 +154,12 @@ export const siteSettings = {
         permissions: adminAndOwnerOnly,
       },
       {
+        href: (shop: string) => `/${shop}/orders/cancelled`,
+        label: "sidebar-nav-item-orders-cancelled",
+        icon: "OrdersIcon",
+        permissions: adminAndOwnerOnly,
+      },
+      {
         href: (shop: string) => `/${shop}${ROUTES.WITHDRAWS}`,
         label: "sidebar-nav-item-withdraws",
         icon: "AttributeIcon",

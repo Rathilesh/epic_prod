@@ -32,7 +32,7 @@ type IProps = {
 	onOrder: (current: string) => void;
 };
 
-const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
+const OrderListCacelled = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 	const { data, paginatorInfo } = orders! ?? {};
 	const { t } = useTranslation();
 	const rowExpandable = (record: any) => record.children?.length;
@@ -68,6 +68,13 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 			title: t("table:table-item-tracking-number"),
 			dataIndex: "tracking_number",
 			key: "tracking_number",
+			align: "center",
+			width: 150,
+		},
+		{
+			title: "Payment Id",
+			dataIndex: "payment_id",
+			key: "payment_id",
 			align: "center",
 			width: 150,
 		},
@@ -168,15 +175,15 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 			),
 		},
 
-		{
-			title: "Delivery Notes",
-			dataIndex: "delivery_notes",
-			key: "delivery_notes",
-			align: alignLeft,
-			render: (delivery_notes: String) => (
-				<div>{delivery_notes}</div>
-			),
-		},
+		// {
+		// 	title: "Delivery Notes",
+		// 	dataIndex: "delivery_notes",
+		// 	key: "delivery_notes",
+		// 	align: alignLeft,
+		// 	render: (delivery_notes: String) => (
+		// 		<div>{delivery_notes}</div>
+		// 	),
+		// },
 		{
 			// title: "Download",
 			title: t("common:text-invoice"),
@@ -221,12 +228,12 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 							</td>
 							</tr>
 							<tr>
-								<td className="text-left p-4" colSpan={2} width={'50%'}>Bill NO :  <span className="font-bold">#1000{order.id}</span></td>
+								<td className="text-left p-4" colSpan={2} width={'50%'}>Bill NO :  <span className="font-bold">{order.tracking_number}</span></td>
 								<td className="text-right  p-4" colSpan={2} width={'50%'}>Date: {dayjs().format("D MMMM, YYYY")}</td>
 							</tr>
 							<tr>
 								<td className="text-left p-4" colSpan={2} width={'50%'}>
-								<h6>Paid by : COD/Online</h6>
+								<h6>Payment Mode:online/COD</h6>
 								<h6>Billing Address</h6>
 								<h6>{order?.customer?.name}</h6>
 								<h6>{order?.customer?.email}</h6>								
@@ -244,8 +251,8 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 							{order.products.map((pdt, index) => {
 								const { price } = usePrice({
 									// @ts-ignore
-									amount: parseFloat(pdt.pivot?.unit_price)})
-									
+									amount: parseFloat(pdt.price),
+								  });
 
 								  
 							 return (
@@ -253,7 +260,7 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 								<td>{index + 1} {pdt.name}</td>
 								<td className="text-center p-4">{pdt?.pivot?.order_quantity}</td>
 								<td className="text-center p-4">{price}</td> 
-								<td className="text-center p-4">₹{(pdt?.pivot?.subtotal ?? 0)}</td>
+								<td className="text-center p-4">₹{(pdt?.pivot?.subtotal ?? 0) * (pdt?.pivot?.order_quantity ?? 0)}</td>
 							</tr>
 							);
 							})}
@@ -289,16 +296,16 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 				</div>
 			),
 		},
-		{
-			title: t("table:table-item-actions"),
-			dataIndex: "id",
-			key: "actions",
-			align: "center",
-			width: 100,
-			render: (id: string) => (
-				<ActionButtons id={id} detailsUrl={`${router.asPath}/${id}`} />
-			),
-		},
+		// {
+		// 	title: t("table:table-item-actions"),
+		// 	dataIndex: "id",
+		// 	key: "actions",
+		// 	align: "center",
+		// 	width: 100,
+		// 	render: (id: string) => (
+		// 		<ActionButtons id={id} detailsUrl={`${router.asPath}/${id}`} />
+		// 	),
+		// },
 	];
 
 	return (
@@ -311,6 +318,7 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 					data={data}
 					rowKey="id"
 					scroll={{ x: 1000 }}
+					
 					expandable={{
 						expandedRowRender: () => "",
 						rowExpandable: rowExpandable,
@@ -332,4 +340,4 @@ const OrderList = ({ orders, onPagination, onSort, onOrder }: IProps) => {
 	);
 };
 
-export default OrderList;
+export default OrderListCacelled;

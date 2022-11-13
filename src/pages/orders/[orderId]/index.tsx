@@ -163,6 +163,8 @@ export default function OrderDetailsPage() {
 			</div>
 
 			<div className="my-5 lg:my-10 flex justify-center items-center">
+
+				{/* <h1>HERE {`here update ${data?.order?.status}`}</h1> */}
 				<ProgressBox
 					data={orderStatusData?.order_statuses?.data}
 					status={data?.order?.status?.serial!}
